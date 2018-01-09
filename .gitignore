@@ -1,3 +1,11 @@
+### Own
+*.pdf
+*.un~
+*.swo
+*.swp
+*.swn
+*.swm
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
