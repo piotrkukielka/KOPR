@@ -26,16 +26,181 @@
 \usepackage{mathtools} %adds abs
 \usepackage{enumitem} %adds letters to items in enumerate
 
-\title{Atomowa Fizyka, czyli każdego dla skrypt} % Title
+\title{Kwantowe Ochotnicze Pogotowie Ratunkowe} % Title
 
 \author{Debiliusz, Kukiełak} % Author name
 
 \date{\today} % Date for the report
 \begin{document}
 	\maketitle
-    \textit{Ten skrypt jest nieszczęśliwym tworem wyobraźni dwóch studentów}. \\
-    Zawiera tonę suchego humoru, błędów w kodzie, niekompilujących się 
-    fragmentów, a co najważniejsze, jeszcze więcej błędów w tekście.\\
+    \textit{Pop! Six!  Squish! Uh Uh! Cicero! Lipschitz!. \\
+   	Kojarzycie jak ludzie mają takie wkurzające nawyki?...}\\\\
+   	Kalla blickar, kalla karar, du var bara fjorton varar!!\\
+   	Druga faza walki z bossem. Have fun!\\
     Najważniejszy postulat: \textbf{wszystko brać z dystansem!!}
+    \newpage
+    \tableofcontents
+    
+    \section{Wykrzyknik 1}
+    	\subsection{Podpunkt pierwszy}
+    		Hamiltonian dla układu ciał
+    		$$
+    			\hat{H}_{tot} = -\frac{\hbar^2}{2M}\nabla^2_{\vec{R}}-\frac{\hbar^2}{2\mu}\nabla^2_{\vec{r}} + V(\vec{r})
+    		$$
+    		wtedy równanie Schrodingera
+    		$$
+    			\hat{H}_{tot}\psi(\vec{R},\vec{r},t) =i\hbar\partial_t\psi(\vec{R},\vec{r},t)
+    		$$
+    		wówczas, równanie różniczkowe spełnione przez funckję Greena $G_0^{(\pm)}$
+    		$$
+    			\left(\nabla^2+k^2\right)G_0^{(\pm)}(\vec{r},\vec{r}') = \delta^3(\vec{r}-\vec{r}')
+    		$$
+    		znak '$\pm$' odnosi się kolejno: '$+$'- fala wychodząca od centrum rozpraszania, '$-$'- fala wchodząca do centrum rozpraszania.
+    	\subsection{Podpunkt drugi}
+    		Równanie Lippmanna-Schwingera w postaci całkowej dla funkcji $\varphi^{(\pm)}_{\vec{k}}(\vec{r})$
+    		$$
+    			\varphi^{(\pm)}_{\vec{k}}(\vec{r}) = \varphi(\vec{r})_{\vec{k}}+\int d^3r' G_0^{(\pm)}(\vec{r},\vec{r}')U(\vec{r}')\varphi^{(\pm)}_{\vec{k}}(\vec{r}')
+    		$$
+    		oraz w postaci operatorowej 
+    		$$
+	    			\ket{\varphi^{(\pm)}_{\vec{k}}} =\ket{\varphi_{\vec{k}}} +\hat{G}_0^{(\pm)}\hat{U}\ket{\varphi^{(\pm)}_{\vec{k}}} 
+    		$$
+    	\subsection{Podpunkt trzeci}
+    		Musimy wyprowadzić postać swobodnej funkcji Greena, załóżmy zatem, że jest ona w postaci transformaty Fouriera pierwszego argumentu, tzn
+    		$$
+    			G_0(\vec{r},\vec{r}') = \frac{1}{(2\pi)^3}\int d^3k' e^{i\vec{k}'\vec{r}}g(\vec{k}',\vec{r}')
+    		$$
+    		wprowadzamy powyższą postać do naszego równania Schrodingera oraz wprowadzamy postać całkową delty Diraca
+    		$$
+    			(\nabla^2+k^2)\frac{1}{(2\pi)^3}\int d^3k' e^{i\vec{k}'\vec{r}}g(\vec{k}',\vec{r} ') = \frac{1}{(2\pi)^3}\int d^3 k' e^{i\vec{k}'(\vec{r}-\vec{r}')}
+    		$$
+    		upraszczamy stałe oraz zauważamy, że funkcja $g$ nie zależy od $\vec{r}$, działając nawiasem otrzymujemy
+    		$$
+    			\int d^3 k' (-k'^2+k^2)e^{i\vec{k}'\vec{r}}g(\vec{k}',\vec{r} ') = \int d^3 k' e^{i\vec{k}'(\vec{r}-\vec{r}')}
+    		$$
+    		powyższa równość wynika z równości funkcji podcałkowych, zatem
+    		$$
+    			(k^2-k'^2)g(\vec{k}',\vec{r} ') = e^{-i\vec{k}'\vec{r}'}
+    		$$
+    		co prowadzi do
+    		$$
+    			g(\vec{k}',\vec{r} ') = -\frac{-e^{i\vec{k}'\vec{r}'}}{k'^2-k^2}
+    		$$
+    		wtedy swobodna funkcja Greena
+    		$$
+    			G_0(\vec{r},\vec{r}') = -\frac{1}{(2\pi)^3}\int d^3k'\,\,\frac{e^{i\vec{k}'(\vec{r}-\vec{r}')}}{k'^2-k^2}
+    		$$
+    		Przechodzimy do współrzędnych sferycznych $d^3k' = k'^2 \sin\theta dk' d\theta d\varphi$ oraz dokonujemy następującej zamiany
+    		$$
+    		\begin{matrix}
+    			-\sin\theta d\theta = \underbrace{d(\cos\theta)}_z \\
+    			\vec{r}-\vec{r}' = \vec{R}
+    		\end{matrix}
+    		$$
+    		wtedy
+    		$$
+    			G_0(\vec{r},\vec{r}') =  -\frac{1}{(2\pi)^3}\int\limits_0^\infty dk'k'^2\frac{2\pi}{k'^2-k^2}\int\limits_{-1}^1 dz e^{ik' Rz}
+    		$$
+    		obliczmy ostatnią całkę
+    		$$
+    			\int\limits_{-1}^1 dz e^{ik' Rz} = \frac{1}{ik'R}\left(e^{ik'R}-e^{-ik'R} \right) = 2\frac{\sin(k'R)}{k' R}
+    		$$
+    		otrzymujemy
+    		$$
+    		\begin{gathered}
+    				G_0(\vec{r},\vec{r}') = -\frac{1}{4\pi^2}\frac{2}{R}\int\limits_0^\infty dk' \frac{k'^2\sin(k'R)}{k'(k'^2-k^2)} = -\frac{1}{4\pi^2}\frac{1}{iR}\int\limits_{-\infty}^\infty dk' \frac{ik'^2\sin(k'R)}{k'(k'^2-k^2)} = \\ 
+    				-\frac{1}{4\pi^2}\frac{1}{iR}\int\limits_{-\infty}^\infty dk' k'^2\left[\frac{i\sin(k'R)}{k'(k'^2-k^2)}+\frac{\cos(k'R)}{k'(k'^2-k^2)} \right] = 
+    				-\frac{1}{4\pi^2}\frac{1}{iR}\int\limits_{-\infty}^\infty dk' \frac{k'e^{ik'R}}{k'^2-k^2}
+    		\end{gathered}
+    		$$
+    		Pozostaje nam obliczyć występującą w swobodnej funkcji Greena całkę. Zauważamy, że bieguny występują w $k' = \pm k$.\\
+    		Żeby obliczyć powyższą całkę, musimy przejść do całki po konturze $C$ (półokręgu z osią rzeczywistą), ponadto pozbywamy się 
+    		biegunów z osi, dodający i odejmując $\varepsilon>0$, tzn. $k' = -k \to k' = -k-i\varepsilon$ oraz 
+    		$k' = k \to k' = k+i\varepsilon$, aby móc skorzystać z twierdzenia Cauchy'ego o residuach. Przez $C^+$ oznaczmy
+    		półokrąg leżący w górnej półpłaszczyźnie, wówczas
+    		$$
+    			\oint\limits_{C}dk' \frac{k'e^{ik'R}}{k'^2-(k+i\varepsilon)^2} = \int\limits_{-\eta}^\eta dk' \frac{k'e^{ik'R}}{k'^2-(k+i\varepsilon)^2} + 
+    			\int\limits_{C^+} dk' \frac{k'e^{ik'R}}{k'^2-(k+i\varepsilon)^2} = 2\pi i \mathrm{Res}_{k'=k+i\varepsilon}\left[\frac{k'e^{ik'R}}{k'^2-(k+i\varepsilon)^2}\right]
+    		$$
+    		Przechodzimy do obliczeń, zaczynając od residuum- obliczamy z definicji
+    		$$
+    			\lim\limits_{k'\to k+i\varepsilon} (k'-k-i\varepsilon) \frac{k'e^{ik'R}}{k'^2-(k+i\varepsilon)^2} = \lim\limits_{k'\to k+i\varepsilon} \frac{k'e^{ik'R}}{k'+k+i\varepsilon} =
+    			\frac{(k+i\varepsilon)e^{i(k+i\varepsilon)R}}{2(k+i\varepsilon)} \overset{\varepsilon\to 0}{\to} \frac{e^{ikR}}{2}
+    		$$
+    		Zauważamy, że jedna z całek występujących po lewej stronie jest postaci
+    		$$
+    			\int\limits_{S}dz f(z) e^{iaz}
+    		$$
+    		ponadto $S=C^+$ jest górnym półokręgiem. Oznaczmy funkcję podcałkową jako $f(k')$, obliczmy
+    		$$
+    		\begin{gathered}
+    			\max\limits_{k'\in C^+}|f(k')| = \max\limits_{k'\in C^+}\left|\frac{k'e^{ik'R}}{k'^2-(k+i\varepsilon)^2}  \right| 
+    			=\max\limits_{k'\in C^+}\frac{|k'|}{|k'^2-(k+i\varepsilon)^2|} \leq \max\limits_{k'\in C^+}\frac{|k'|}{||k'|^2-|(k+i\varepsilon)|^2|} =\\
+    			\begin{vmatrix}
+    				k' = \eta e^{i\varphi}
+    			\end{vmatrix}
+    			= \max\limits_{\varphi\in[0,\pi]}\frac{\eta}{\eta^2-(k^2+\varepsilon^2)} \overset{\eta\to \infty}{\to} 0
+    		\end{gathered}
+    		$$
+    		zatem, jak tylko zwiększamy promień półokręgu
+    		$$
+    			\max\limits_{k'\in C^+} \left|\frac{k'e^{ik'R}}{k'^2-(k+i\varepsilon)^2}\right| = 0
+    		$$
+    		więc na mocy lematu Jordana 
+    		$$
+    			\left|\int\limits_{C^+}dk'\frac{k'e^{ik'R}}{k'^2-(k+i\varepsilon)^2}\right| \leq 0 \implies \int\limits_{C^+}dk'\frac{k'e^{ik'R}}{k'^2-(k+i\varepsilon)^2} = 0
+    		$$
+    		stąd nasza całka jest równa
+    		$$
+    			\int\limits_{-\infty}^\infty dk' \frac{k'e^{ik'R}}{k'^2-k^2} = i\pi e^{ikR}
+    		$$
+    		zatem funkcja Greena ma postać
+    		$$
+    			G_0^{(+)}(\vec{r},\vec{r}') = = -\frac{1}{4\pi}\frac{e^{ik|\vec{r}-\vec{r}'|}}{|\vec{r}-\vec{r}'|}
+    		$$
+    		Obliczenia dla funkcji $G_0^{(-)}$ są prowadzone identycznie, przy czym podczas przesuwania biegunów dokonujemy przekształcenia
+    		$$
+    			\begin{vmatrix}
+    			k' = -k +i\varepsilon & k' = k-i\varepsilon 
+    			\end{vmatrix}
+    		$$
+    		zatem z konturu całkowania wyrzucamy ten biegun, dla którego $\Re(k')>0$
+    \section{Wykrzyknik 2}
+    	\subsection{Podpunkt pierwszy}
+    	\subsection{Podpunkt drugi}
+    \section{Wykrzyknik 3}
+    	\subsection{Podpunkt pierwszy}
+    	\subsection{Podpunkt drugi}
+    	\subsection{Podpunkt trzeci}
+    \section{Wykrzyknik 4}
+    	\subsection{Podpunkt pierwszy}
+    	\subsection{Podpunkt drugi}
+    	\subsection{Podpunkt trzeci}
+    \section{Wykrzyknik 5}
+    	\subsection{Podpunkt pierwszy}
+    	\subsection{Podpunkt drugi}
+    \section{Wykrzyknik 6}
+    	\subsection{Podpunkt pierwszy}
+    	\subsection{Podpunkt drugi}
+    \section{Wykrzyknik 7}
+    	\subsection{Podpunkt pierwszy}
+    	\subsection{Podpunkt drugi}
+    \section{Wykrzyknik 8}
+    	\subsection{Podpunkt pierwszy}
+    	\subsection{Podpunkt drugi}
+    \section{Wykrzyknik 9}
+    	\subsection{Podpunkt pierwszy}
+    	\subsection{Podpunkt drugi}
+    \section{Wykrzyknik 10}
+    	\subsection{Podpunkt pierwszy}
+    	\subsection{Podpunkt drugi}
+    	\subsection{Podpunkt trzeci}
+    	\subsection{Podpunkt czwarty}
+    	\subsection{Podpunkt piąty}
+    \section{Wykrzyknik 11}
+    	\subsection{Podpunkt pierwszy}
+    	\subsection{Podpunkt drugi}
+    \section{Wykrzyknik 12}
+    \section{Wykrzyknik 13}
     
 \end{document}
