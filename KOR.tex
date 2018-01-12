@@ -156,7 +156,7 @@
     		$$
     		zatem funkcja Greena ma postać
     		$$
-    			G_0^{(+)}(\vec{r},\vec{r}') = = -\frac{1}{4\pi}\frac{e^{ik|\vec{r}-\vec{r}'|}}{|\vec{r}-\vec{r}'|}
+    			G_0^{(+)}(\vec{r},\vec{r}') =  -\frac{1}{4\pi}\frac{e^{ik|\vec{r}-\vec{r}'|}}{|\vec{r}-\vec{r}'|}
     		$$
     		Obliczenia dla funkcji $G_0^{(-)}$ są prowadzone identycznie, przy czym podczas przesuwania biegunów dokonujemy przekształcenia
     		$$
@@ -167,15 +167,144 @@
     		zatem z konturu całkowania wyrzucamy ten biegun, dla którego $\Re(k')>0$
     \section{Wykrzyknik 2}
     	\subsection{Podpunkt pierwszy}
+    	Zatem sprawdzamy
+    	$$
+    	\begin{gathered}
+   			 (\nabla^2 +k^2) \varphi_{\vec{k}}^{(\pm)}(\vec{r}) = U(\vec{r})\varphi_{\vec{k}}^{(\pm)}(\vec{r})\\
+   			 L = (\nabla^2 +k^2)\left[\frac{1}{(2\pi)^{3/2}}e^{i\vec{k}\cdot\vec{r}}+\int d^3r' G_0^{(\pm)}(\vec{r},\vec{r}')U(\vec{r}')\varphi_{\vec{k}}^{(\pm)}(\vec{r}')\right] = \\
+   			= -\frac{k^2}{(2\pi)^{3/2}}e^{i\vec{k}\cdot\vec{r}} +\frac{k^2}{(2\pi)^{3/2}}e^{i\vec{k}\cdot\vec{r}} + \int d^3r'(\nabla^2 +k^2)
+   			 G_0^{(\pm)}(\vec{r},\vec{r}')U(\vec{r}')\varphi_{\vec{k}}^{(\pm)}(\vec{r}') = \\
+   			 =\int d^3r'\delta^3(\vec{r}-\vec{r}')U(\vec{r}')\varphi_{\vec{k}}^{(\pm)}(\vec{r}') = U(\vec{r})\varphi_{\vec{k}}^{(\pm)}(\vec{r}) = P
+    	\end{gathered}
+    	$$
     	\subsection{Podpunkt drugi}
+    	Przypomnijmy rozwiązanie
+    	$$
+    		\varphi_{\vec{k}}^{(\pm)}(\vec{r}) = \frac{1}{(2\pi)^{3/2}}e^{i\vec{k}\cdot\vec{r}} - \frac{1}{4\pi}\int d^3r' \frac{e^{\pm ik|\vec{r}-\vec{r}'|}}{|\vec{r}-\vec{r}'|}U(\vec{r}')\varphi_{\vec{k}}^{(\pm)}(\vec{r}')
+    	$$
+    	interesuje nas zachowanie powyższego rozwiązania w nieskończoności, zatem interesują nas odległości $r\gg$ zasięgu potencjału, co jest równoważne $r\gg r'$, gdyż całkowanie 
+    	w równaniu Lippmanna- Schwingera odbywa się po zasięgu potencjału.\\
+    	Rozpatrzmy następujące wartości
+    	$$
+    		\frac{1}{|\vec{r}-\vec{r}'|}=\frac{1}{\sqrt{r^2+r'^2-2\vec{r}\cdot\vec{r}'}} = \frac{1}{r}\frac{1}{\sqrt{1+(r'/r)^2-2\frac{\vec{r}\cdot\vec{r}'}{r^2}}}
+    		\approx \frac{1}{r}
+    	$$
+    	ponadto
+    	$$
+    	\begin{gathered}
+    		k|\vec{r}-\vec{r}'| = k\sqrt{r^2+r'^2-2\vec{r}\cdot\vec{r}'} = kr\sqrt{1+(r'/r)^2-2\frac{\vec{r}\cdot\vec{r}'}{r^2}} \approx \\
+    		\approx kr\sqrt{1-2\frac{\vec{r}\cdot\vec{r}'}{r^2}} \approx kr\left(1-\frac{\vec{r}\cdot\vec{r}'}{r^2}\right) = kr - k\hat{r}\cdot\vec{r}'
+    	\end{gathered}
+    	$$
+    	wektor przed i po rozpraszaniu ma taką samą długość (rozpraszanie elastyczne), oznaczmy
+    	$$
+    		k\hat{r} = \vec{k}_f,\quad \vec{k}=\vec{k}_i
+    	$$
+    	wtedy
+    	$$
+    		\varphi_{\vec{k}_i}^{(\pm)}(\vec{r}) = \frac{1}{(2\pi)^{3/2}}e^{i\vec{k}_i\cdot\vec{r}} - \frac{e^{\pm ikr}}{r}\underbrace{\frac{1}{4\pi}\int d^3r' e^{\mp i\vec{k}_f\cdot\vec{r}'}U(\vec{r}')\varphi_{\vec{k}_i}^{(\pm)}(\vec{r}')}_{\frac{1}{(2\pi)^{3/2}}f(\vec{k}_f,\vec{k}_i)}
+    	$$
+    	co możemy zapisać jako
+    	$$
+    		\varphi_{\vec{k}_i}^{(\pm)}(\vec{r}) = \frac{1}{(2\pi)^{3/2}}\left[e^{i\vec{k}\cdot\vec{r}}+\frac{e^{\pm ikr}}{r}f^{(\pm)}(\vec{k}_f,\vec{k}_i)\right]
+    	$$
+    	dobra, tutaj daję sobie luzu z tymi '$\pm$' i prowadzę dla $+$. Szukamy postaci całkowej amplitudy rozpraszania, zauważmy, że
+    	$$
+    	\begin{gathered}
+    		f(\vec{k}_f,\vec{k}_i) = -\frac{(2\pi)^{3/2}}{4\pi}\int d^3r' e^{-i\vec{k}_f\cdot\vec{r}'}U(\vec{r}')\varphi_{\vec{k}_i}^{(+)}(\vec{r}') = -2\pi^2 \int d^3r' \varphi_{\vec{k}_f}^*(\vec{r}')U(\vec{r}')\varphi_{\vec{k}_i}^{(+)}(\vec{r}') 
+    	\end{gathered}
+    	$$
+    	i... znaleźliśmy...
     \section{Wykrzyknik 3}
     	\subsection{Podpunkt pierwszy}
+    	A to zapiszmy
+    	$$
+    		\ket{\varphi^{(+)}_{\vec{k}_i}} = \ket{\varphi_{\vec{k}_i}} + \hat{G}^{(+)}\hat{U}\ket{\varphi_{\vec{k}_i}}
+    	$$
     	\subsection{Podpunkt drugi}
+    	Przepiszmy postać całkową amplitudy rozpraszania
+    	$$
+    		f(\vec{k}_f,\vec{k}_i) = -2\pi^2 \int d^3r' \varphi_{\vec{k}_f}^*(\vec{r}')U(\vec{r}')\varphi_{\vec{k}_i}^{(+)}(\vec{r}') 
+    	$$
+    	Możemy to zapisać, jeżeli $U(\vec{r})$ potraktujemy jako element macierzowy operatora $\hat{U}$, jako 
+    	$$
+    		f(\vec{k}_f,\vec{k}_i) = -2\pi^2\bra{\varphi_{\vec{k}_f}}U(\vec{r})\ket{\varphi_{\vec{k}_i}^{(+)}} = -2\pi^2\bra{\varphi_{\vec{k}_f}}\hat{U}\ket{\varphi_{\vec{k}_i}^{(+)}}
+    	$$
+    	skorzystajmy teraz z faktu zapisanego w poprzednim podpunkcie
+    	$$
+    	\begin{gathered}
+    		f(\vec{k}_f,\vec{k}_i)  = -2\pi^2\bra{\varphi_{\vec{k}_f}}\hat{U}\left[\ket{\varphi_{\vec{k}_i}} + \hat{G}^{(+)}\hat{U}\ket{\varphi_{\vec{k}_i}}\right]= 
+    		-2\pi^2\bra{\varphi_{\vec{k}_f}}\hat{U}+\hat{U}\hat{G}^{(+)}\hat{U}\ket{\varphi_{\vec{k}_i}} =\\ 
+    		= -2\pi^2 \bra{\varphi_{\vec{k}_i}}\left(\hat{U}+\hat{U}\hat{G}^{(+)}\hat{U}\right)^\dagger\ket{\varphi_{\vec{k}_f}}^* = 
+    		-2\pi^2 \bra{\varphi_{\vec{k}_i}}\hat{U}+\hat{U}\hat{G}^{(-)}\hat{U}\ket{\varphi_{\vec{k}_f}}^*= \\= -2\pi^2 \bra{\varphi_{\vec{k}_i}}\hat{U}\ket{\varphi^{(-)}_{\vec{k}_f}}^*
+    		 =-2\pi^2 \bra{\varphi^{(-)}_{\vec{k}_f}}\hat{U}\ket{\varphi_{\vec{k}_i}}
+    	\end{gathered}
+    	$$
+    	skorzystaliśmy tutaj z faktów, że:$\hat{U}^\dagger =\hat{U},\quad \hat{G}^{(+)^\dagger} = \hat{G}^{(-)}$
     	\subsection{Podpunkt trzeci}
+    	Operator Mollera
+    	$$
+    		\Omega^{(\pm)}\ket{\varphi_{\vec{k}}} = \ket{\varphi^{(\pm)}_{\vec{k}}}
+    	$$
+    	Operator przejścia
+    	$$
+    		T = V\Omega^{(+)}
+    	$$
+    	wtedy amplituda rozpraszania jest postaci
+    	$$
+    		f(\vec{k},\vec{k}') = -2\pi^2\bra{\varphi_{\vec{k}'}}U\ket{\varphi^{(+)}_{\vec{k}}} = -2\pi^2\frac{2\mu}{\hbar^2}\bra{\varphi_{\vec{k}'}}V\Omega^{(+)}\ket{\varphi_{\vec{k}}}
+    		= -(2\pi)^2\frac{\mu}{\hbar^2}T_{\vec{k}'\vec{k}}
+    	$$
     \section{Wykrzyknik 4}
     	\subsection{Podpunkt pierwszy}
+    	Musimy zapisać amplitudę rozpraszania
+    	$$
+    		f(\vec{k},\vec{k}') =-2\pi^2\bra{\varphi^{(-)}_{\vec{k}_f}}\hat{U}\ket{\varphi_{\vec{k}_i}}
+    	$$
+    	w przybliżeniu Borna. Wyprowadzam ją zgodnie z wykładem, wzory są sobie równoważne, tzn. $-2\pi^2\bra{\varphi^{(-)}_{\vec{k}_f}}\hat{U}\ket{\varphi_{\vec{k}_i}}= -2\pi^2\bra{\varphi_{\vec{k}_f}}\hat{U}\ket{\varphi_{\vec{k}_i}^{(+)}}$. Zatem
+    	$$
+    		f(\vec{k}_f,\vec{k}_i) =-2\pi^2\bra{\varphi_{\vec{k}_f}}\hat{U}\ket{\varphi_{\vec{k}_i}^{(+)}} = -2\pi^2\sum\limits_{n/0}^\infty\bra{\varphi_{\vec{k}_f}}\hat{U}\ket{\varphi^(n)_{\vec{k}_i}}
+    	$$
+    	przy czym przez symbol $\ket{\varphi^(n)_{\vec{k}_i}}$ rozumiemy
+    	$$
+    		\ket{\varphi^(n)_{\vec{k}_i}} = \underbrace{\hat{G}_0^{(+)}\hat{U}\cdots\hat{G}_0^{(+)}\hat{U}}_{n par}\ket{\varphi_{\vec{k}_i}}
+    	$$
+    	w przybliżeniu Borna zostawiamy jednynie sumę dla $n=0$, wówczas
+    	$$
+    	\begin{gathered}
+    		f(\vec{k}_f,\vec{k}_i) = -2\pi^2\bra{\varphi_{\vec{k}_f}}\hat{U}\ket{\varphi^(0)_{\vec{k}_i}} = -2\pi^2\int d^3 r\frac{1}{(2\pi)^3}e^{-i\vec{k}_f\cdot\vec{r}}e^{i\vec{k}_i\cdot\vec{r}}U(\vec{r}) = 
+    		\begin{vmatrix}
+    			\vec{q} = \vec{k}_f - \vec{k}_i
+    		\end{vmatrix} = \\=-\frac{1}{4\pi}\int d^3r e^{-i\vec{k}_f\cdot\vec{r}}e^{i\vec{k}_i\cdot\vec{r}}U(\vec{r}) 
+    	\end{gathered}
+    	$$
+    	jeżeli założymy, że $U(\vec{r}) = U(r)$, czyli mamy potencjał sferycznie symetryczny, wówczas przechodząc do zmiennych sferycznych przy założeniach, że
+    	$OZ||\vec{q}$ dostajemy
+    	$$
+    		f(\vec{k}_f,\vec{k}_i) = -\frac{1}{2}\int\limits_0^\infty dr\,\, r^2 U(r) \int\limits_{-1}^1 dz e^{-iqrz} = -\frac{1}{q}\int\limits_0^\infty dr\,\, r U(r)\sin(qr)
+    	$$
     	\subsection{Podpunkt drugi}
+    	Potencjał Yukawy
+    	$$
+    		U(r) = -\frac{2mZe^2}{\hbar^2}\frac{e^{-ar}}{r}
+    	$$
+    	wówczas
+    	$$
+    		f_B = \frac{2mZe^2}{\hbar^2}\frac{1}{q}\int\limits_0^\infty dr\,\, r\sin(qr)\frac{e^{-ar}}{r} =\frac{2mZe^2}{\hbar^2}\frac{1}{q}\underbrace{\int\limits_0^\infty dr\,\,\sin(qr)e^{-ar}}_{I} 
+    	$$
+    	obliczamy całkę $I$, jako
+    	$$
+    		I=\Im{\int\limits_0^\infty dr\, e^{iqr-ar}} =\Im{\left.\frac{1}{iq-a}e^{(iq-a)r}\right|_0^\infty} = \Im{\frac{1}{iq-a}} = \frac{q}{a^2+q^2}
+    	$$
+    	zatem
+    	$$
+    		f_B = \frac{2mZe^2}{\hbar^2}\frac{1}{q}\cdot\frac{q}{a^2+q^2} = \frac{U_0}{a^2+q^2},\quad q^2 = 4k_i\sin^2{\frac{\theta}{2}}
+    	$$
     	\subsection{Podpunkt trzeci}
+    	Szukamy wzoru Rutherforda na różniczkowy przekrój czynny
+    	$$
+    	\sigma_B(\theta) = |f_B|^2 = \frac{U_0^2}{(a^2+q^2)^2} \overset{a\to 0}{\to} \frac{U_0^2}{q^4} = \frac{U_0^2}{(4k_i\sin^2\frac{\theta}{2})^2}
+    	$$
     \section{Wykrzyknik 5}
     	\subsection{Podpunkt pierwszy}
     	\subsection{Podpunkt drugi}
